@@ -20,17 +20,13 @@ export class ConsentService {
 
     const userDetails = await this.userService.findOne(id);
 
-    const consentsData = consents.map((c) => ({ ...c, user: userDetails }));
+    const consentsData = consents.map((c) => ({
+      ...c,
+      userid: id,
+      user: userDetails,
+    }));
 
     const saved = await this.consentRepository.save(consentsData);
     return saved;
-  }
-
-  async findAll() {
-    return await this.consentRepository.find({ relations: ['user'] });
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} consent`;
   }
 }

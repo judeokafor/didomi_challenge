@@ -14,6 +14,9 @@ export class Consent extends BaseModel {
   @Column({ type: 'boolean', default: false })
   enabled: boolean;
 
+  @Column({ type: 'uuid' })
+  userid: string;
+
   @Column({ type: 'enum', enum: CONSENT_TYPE })
   type: CONSENT_TYPE;
 
