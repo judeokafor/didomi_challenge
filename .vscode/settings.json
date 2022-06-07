@@ -1,0 +1,68 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": false,
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "cSpell.words": [
+    "grammer",
+    "Kippa",
+    "nestjs",
+    "PAYSTACK",
+    "WEMA"
+  ],
+
+
+  "todohighlight.isEnable": true,
+  "todohighlight.isCaseSensitive": true,
+  "todohighlight.keywords": [
+      "DEBUG:",
+      "REVIEW:",
+      {
+          "text": "NOTE:",
+          "color": "#ff0000",
+          "backgroundColor": "yellow",
+          "overviewRulerColor": "grey"
+      },
+      {
+          "text": "FUTURE_DEPRECATION:",
+          "color": "#FF1100",
+          "backgroundColor": "white",
+          "overviewRulerColor": "grey"
+      },
+      {
+          "text": "HACK:",
+          "color": "#000",
+          "isWholeLine": false,
+      },
+  ],
+  "todohighlight.include": [
+      "**/*.js",
+      "**/*.ts",
+      "**/*.html",
+  ],
+  "todohighlight.exclude": [
+      "**/node_modules/**",
+      "**/bower_components/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.vscode/**",
+      "**/.github/**",
+      "**/_output/**",
+      "**/*.min.*",
+      "**/*.map",
+      "**/*.json"
+  ],
+  "todohighlight.maxFilesForSearch": 5120,
+  "todohighlight.toggleURI": false
+
+}
