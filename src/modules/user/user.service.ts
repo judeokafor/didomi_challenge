@@ -15,7 +15,7 @@ export class UserService {
   async create(userDto: CreateUserDto) {
     const { email } = userDto;
     const isEmailValid = emailvalidator.validate(email);
-    console.log('email', email, isEmailValid);
+
     if (!email || !isEmailValid) {
       throw new UnprocessableEntityException('Invalid email');
     }
