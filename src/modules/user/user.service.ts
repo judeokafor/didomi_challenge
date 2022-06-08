@@ -5,6 +5,7 @@ import * as emailvalidator from 'email-validator';
 
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
+import { Consent } from '../consent/entities/consent.entity';
 
 @Injectable()
 export class UserService {
@@ -40,24 +41,28 @@ export class UserService {
 
     return usersWithConsents.map((usersWithConsent) => {
       const { consents, id, email } = usersWithConsent;
-      const finalConsents = [
-        ...new Map(
-          consents.map((consent) => [
-            consent.type,
-            {
-              type: consent.type,
-              enabled: consent.enabled,
-            },
-          ]),
-        ).values(),
-      ];
+      const formattedConsents = this.getFormattedConsents(consents);
 
       return {
         id,
         email,
-        consents: finalConsents,
+        consents: formattedConsents,
       };
     });
+  }
+
+  getFormattedConsents(consents: Consent[]) {
+    return [
+      ...new Map(
+        consents.map((consent) => [
+          consent.type,
+          {
+            type: consent.type,
+            enabled: consent.enabled,
+          },
+        ]),
+      ).values(),
+    ];
   }
 
   async findOne(id: string) {

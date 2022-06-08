@@ -1,8 +1,8 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
 
 import { TABLES } from '../../../commons/constants';
-import { User } from 'src/modules/user/entities/user.entity';
-import { BaseModel } from 'src/commons/base/model';
+import { User } from '../../../modules/user/entities/user.entity';
+import { BaseModel } from '../../../commons/base/model';
 
 export enum CONSENT_TYPE {
   EMAIL_NOTIFICATIONS = 'email_notifications',
@@ -13,9 +13,6 @@ export enum CONSENT_TYPE {
 export class Consent extends BaseModel {
   @Column({ type: 'boolean', default: false })
   enabled: boolean;
-
-  @Column({ type: 'uuid' })
-  userid: string;
 
   @Column({ type: 'enum', enum: CONSENT_TYPE })
   type: CONSENT_TYPE;

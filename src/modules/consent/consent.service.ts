@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserService } from '../user/user.service';
@@ -20,9 +20,12 @@ export class ConsentService {
 
     const userDetails = await this.userService.findOne(id);
 
-    const consentsData = consents.map((c) => ({
-      ...c,
-      userid: id,
+    if (!userDetails) {
+      throw new NotFoundException('User does not exist ');
+    }
+
+    const consentsData = consents.map((consent) => ({
+      ...consent,
       user: userDetails,
     }));
 

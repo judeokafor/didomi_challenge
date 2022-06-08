@@ -1,4 +1,4 @@
-import { BaseModel } from 'src/commons/base/model';
+import { BaseModel } from '../../../commons/base/model';
 import { Column, Entity, OneToMany, JoinColumn } from 'typeorm';
 
 import { TABLES } from '../../../commons/constants';
