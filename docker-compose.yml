@@ -1,0 +1,52 @@
+version: '3'
+services: 
+  db:
+    image: postgres
+    restart: always
+    environment: 
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+      - POSTGRES_DB=${PG_DATABASE}
+    container_name: postgres-db
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+  didomi-app:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    image: jude_okafor/didiomi:latest
+    environment: 
+      - PG_HOST=${PG_HOST}
+      - PG_USER=${PG_USER}
+      - PG_PASSWORD=${PG_PASSWORD}
+      - PG_DATABASE=${PG_DATABASE}
+      - PG_PORT=${PG_PORT}
+      - APP_ENV=${APP_ENV}
+      - PORT=${PORT}
+      - HOST=${HOST}
+    ports: 
+      - "8081:8081" # expose-to-the-world : only-in-the-docker
+    container_name: didiomi-challenge
+    depends_on: 
+      - db
+    volumes: 
+      - .:/app
+      - /app/node_modules
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    container_name: didiomi-pgadmin4
+    environment: 
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+      - PGADMIN_LISTEN_PORT=${PGADMIN_LISTEN_PORT}
+    ports: 
+      - "8080:80"
+    volumes: 
+      - ./pgadmin-data:/var/lib/pgadmin
+    depends_on: 
+      - db
+volumes:
+  pgdata:
+  pgadmin-data:
+  
